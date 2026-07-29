@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FlowPilot AI
 
-## Getting Started
+FlowPilot AI is a polished marketing site for an enterprise workflow-automation platform. It presents AI workflow automation, document processing, intelligent agents, API integrations, and enterprise security through a fast, accessible Next.js experience.
 
-First, run the development server:
+> **Live URL:** Pending Vercel authentication and deployment. See [deployment notes](#deployment) below.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- Four focused marketing routes: home, product, pricing, and contact
+- Reusable layout and UI primitives for consistent buttons, containers, cards, and section titles
+- Responsive, keyboard-accessible interface with visible focus states and a skip-to-content link
+- Subtle, reduced-motion-friendly transitions and hover interactions
+- Page-specific metadata with canonical URLs, Open Graph, Twitter, and robots directives
+- JSON-LD structured data for `Organization`, `SoftwareApplication`, `Service`, and `FAQPage`
+- Server Component-first architecture with no animation-library dependency
+
+## Tech stack
+
+- [Next.js](https://nextjs.org/) 16 with the App Router
+- [React](https://react.dev/) 19 and TypeScript
+- Tailwind CSS 4 for the project CSS pipeline
+- ESLint for code-quality checks
+
+## Lighthouse
+
+Lighthouse results should be captured against the deployed HTTPS URL, not a local development server. The screenshot directory and capture checklist are ready at [docs/lighthouse](docs/lighthouse/README.md).
+
+Target scores:
+
+| Category | Target |
+| --- | ---: |
+| Performance | 95–100 |
+| Accessibility | 100 |
+| Best Practices | 100 |
+| SEO | 100 |
+
+After deployment, add desktop and mobile reports as `docs/lighthouse/desktop.png` and `docs/lighthouse/mobile.png`, then embed them here:
+
+```md
+![Desktop Lighthouse report](docs/lighthouse/desktop.png)
+![Mobile Lighthouse report](docs/lighthouse/mobile.png)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Folder structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+src/
+├── app/                    # App Router routes, layout, metadata, and global styles
+│   ├── page.tsx            # Home page
+│   ├── product/page.tsx    # Product page
+│   ├── pricing/page.tsx    # Pricing page
+│   └── contact/page.tsx    # Contact page
+├── components/
+│   ├── contact/            # Contact-page sections
+│   ├── home/               # Home-page sections
+│   ├── layout/             # Navbar and footer
+│   ├── pricing/            # Pricing-page sections
+│   ├── product/            # Product-page sections
+│   ├── seo/                # JSON-LD helper
+│   └── ui/                 # Shared Button, Card, Container, and SectionTitle
+├── data/                   # Static plan data
+└── types/                  # Shared TypeScript types
+docs/
+└── lighthouse/             # Lighthouse evidence and capture notes
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local setup
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 20 or later
+- npm 10 or later
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run locally
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git clone <your-repository-url>
+cd flowpilot-ai
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Quality checks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
+
